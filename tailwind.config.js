@@ -13,6 +13,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
+				"auth-bg": "rgba(5, 101, 191, 0.9)",
 				"dark-layer-1": "rgb(40,40,40)",
 				"dark-layer-2": "rgb(26,26,26)",
 				"dark-label-2": "rgba(239, 241, 246, 0.75)",
