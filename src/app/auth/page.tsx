@@ -1,6 +1,7 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbar/Navbar';
 import Image from 'next/image';
+import AuthModal from '../components/Modals/AuthModal';
 
 type AuthPageProps = {};
 
@@ -17,6 +18,8 @@ const AuthPage: React.FC<AuthPageProps> = () => {
                 ></div>
               </div>
             </div>
+            <AuthModal />
+
           </div>
         </div>
       );
