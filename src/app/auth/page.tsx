@@ -1,11 +1,15 @@
+'use client'
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Image from 'next/image';
 import AuthModal from '../components/Modals/AuthModal';
+import { authModalState } from '@/atoms/authModalAtom';
+import { useRecoilValue } from 'recoil';
 
 type AuthPageProps = {};
 
 const AuthPage: React.FC<AuthPageProps> = () => {
+    const authModal = useRecoilValue(authModalState)
     return (
         <div>
           <div className="mx-auto">
@@ -18,7 +22,7 @@ const AuthPage: React.FC<AuthPageProps> = () => {
                 ></div>
               </div>
             </div>
-            <AuthModal />
+            {authModal.isOpen && <AuthModal />}
 
           </div>
         </div>
