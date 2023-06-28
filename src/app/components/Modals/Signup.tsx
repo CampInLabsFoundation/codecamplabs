@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase';
-import router from 'next/router';
+import { useRouter } from 'next/navigation';
 
 
 type SignupProps = {
@@ -15,6 +15,7 @@ type SignupProps = {
 const Signup:React.FC<SignupProps> = () => {
     const setAuthModalState = useSetRecoilState(authModalState);
 
+    const router = useRouter();
     const handleClick = () => {
 		setAuthModalState((prev) => ({ ...prev, type: "login"}));
 	};
@@ -39,7 +40,7 @@ const Signup:React.FC<SignupProps> = () => {
 		
 			const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password);
 			if (!newUser) return;
-			router.push("/auth");
+			router.push("/");
 
 		} catch (error: any) {
 			alert(error.message);
