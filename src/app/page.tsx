@@ -1,5 +1,7 @@
+
 import Image from 'next/image'
 import Topbar from './components/Topbar/topbar'
+import ProblemsTable from './components/ProblemsTable/Problemstable'
 
 export default function Home() {
   return (
@@ -34,6 +36,7 @@ export default function Home() {
 									</th>
 								</tr>
 							</thead>
+              <ProblemsTable />
           </table>
 					
 
