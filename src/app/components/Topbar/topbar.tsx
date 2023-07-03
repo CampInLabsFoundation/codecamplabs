@@ -5,6 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/app/firebase/firebase";
+import Logout from "../Buttons/Logout";
 
 
 type TopbarProps = {
@@ -55,14 +56,15 @@ const Topbar: React.FC<TopbarProps> = ({ problemPage }) => {
 			)}
 			{user && (
 				<div className='cursor-pointer group relative'>
-				<Image src='/avatar.png' alt='Avatar' width={30} height={30} className='rounded-full' />
-				<div className='absolute top-10 left-2/4 -translate-x-2/4 mx-auto bg-dark-layer-1 text-brand-orange p-2 rounded shadow-lg 
+				<Image src='/avatar.png' alt='Avatar' width={45} height={45} className='rounded-full' />
+				<div className='absolute  top-10 left-2/4 -translate-x-2/4 mx-auto bg-dark-layer-1 text-brand-orange p-2 rounded shadow-lg 
 								z-40 group-hover:scale-100 scale-0 
 								transition-all duration-300 ease-in-out'>
 					<p className='text-sm'>{user.email}</p>
 				</div>
 				</div>
 			)}
+			{user && <Logout />}
 			</div>
 		</div>
 		</nav>
