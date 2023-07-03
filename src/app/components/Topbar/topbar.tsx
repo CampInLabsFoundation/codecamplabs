@@ -1,8 +1,10 @@
-
+"use client"
 import Link from "next/link";
 import React from "react";
 
 import Image from "next/image";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/firebase";
 
 
 type TopbarProps = {
@@ -10,7 +12,7 @@ type TopbarProps = {
 };
 
 const Topbar: React.FC<TopbarProps> = ({ problemPage }) => {
-
+	const [user] = useAuthState(auth);
 
 	return (
 		<nav className='relative flex h-[100px] w-full shrink-0 items-center px-5 bg-white text-dark-gray-7'>
@@ -18,56 +20,53 @@ const Topbar: React.FC<TopbarProps> = ({ problemPage }) => {
 				<Link href='' className='flex items-center h-[22px] flex-1'>
 					<Image src='/CampFullLogo.png' alt='Logo' height={150} width={150} />
 				</Link>
-                
-				{problemPage && (
-					<div className='flex items-center gap-4 flex-1 justify-center'>
-						<div
-							className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'
-
-						>
-							
-						</div>
-						<Link
-							href='/'
-							className='flex items-center gap-2 font-medium max-w-[170px] text-dark-gray-8 cursor-pointer'
-						>
-							<div>
-								
-							</div>
-							<p>Problem List</p>
-						</Link>
-						<div
-							className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'
-							
-						>
-							
-						</div>
-					</div>
-				)}
-
-				<div className='flex items-center space-x-4 flex-1 justify-end'>
-					<div>
-						<a
-							href='https://campinlabs.com/product/donation/'
-							target='_blank'
-							rel='noreferrer'
-							className='bg-sky-600 mr-3 py-1.5 px-3 cursor-pointer rounded hover:text-sky-600 text-white hover:bg-white hover:border-2
-                            hover:border-sky-600 border-2 border-transparent transition duration-300 ease-in-out
-                            '
-						>
-							Donate
-						</a>
-                        <Link href='/auth'>
-						<button className='bg-brand-orange text-white py-1.5 px-3  sm:px-4 rounded-md text-sm font-medium
-            hover:text-brand-orange hover:bg-white hover:border-2 hover:border-brand-orange border-2 border-transparent
-            transition duration-300 ease-in-out
-             cursor-pointer '>Sign In</button>
-					    </Link>
-					</div>
-
-				</div>
+	
+			{problemPage && (
+			<div className='flex items-center gap-4 flex-1 justify-center'>
+				<div className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'></div>
+				<Link href='/' className='flex items-center gap-2 font-medium max-w-[170px] text-dark-gray-8 cursor-pointer'>
+				<div></div>
+				<p>Problem List</p>
+				</Link>
+				<div className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'></div>
 			</div>
+			)}
+		
+			<div className='flex items-center space-x-4 flex-1 justify-end'>
+			
+		
+			<a
+				href='https://campinlabs.com/product/donation/'
+				target='_blank'
+				rel='noreferrer'
+				className='bg-sky-600 mr-3 py-1.5 px-3 cursor-pointer rounded hover:text-sky-600 text-white hover:bg-white hover:border-2
+						hover:border-sky-600 border-2 border-transparent transition duration-300 ease-in-out'
+			>
+				Donate
+			</a>
+			{!user && (
+				<Link href='/auth'>
+				<button className='bg-brand-orange text-white py-1.5 px-3 sm:px-4 rounded-md text-sm font-medium
+									hover:text-brand-orange hover:bg-white hover:border-2 hover:border-brand-orange border-2 border-transparent
+									transition duration-300 ease-in-out cursor-pointer'>
+					Sign In
+				</button>
+				</Link>
+			)}
+			{user && (
+				<div className='cursor-pointer group relative'>
+				<Image src='/avatar.png' alt='Avatar' width={30} height={30} className='rounded-full' />
+				<div className='absolute top-10 left-2/4 -translate-x-2/4 mx-auto bg-dark-layer-1 text-brand-orange p-2 rounded shadow-lg 
+								z-40 group-hover:scale-100 scale-0 
+								transition-all duration-300 ease-in-out'>
+					<p className='text-sm'>{user.email}</p>
+				</div>
+				</div>
+			)}
+			</div>
+		</div>
 		</nav>
+
 	);
 };
 export default Topbar;
