@@ -1,7 +1,8 @@
 
 import Image from 'next/image'
 import Topbar from './components/Topbar/topbar'
-import ProblemsTable from './components/ProblemsTable/Problemstable'
+import ProblemsTable from './components/ProblemsTable/ProblemsTable'
+
 
 export default function Home() {
   return (

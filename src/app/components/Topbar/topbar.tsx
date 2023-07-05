@@ -8,7 +8,9 @@ import { auth } from "@/app/firebase/firebase";
 import Logout from "../Buttons/Logout";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "@/atoms/authModalAtom";
-
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { BsList } from "react-icons/bs";
+import Timer from "../Timer/Timer";
 
 type TopbarProps = {
 	problemPage?: boolean;
@@ -24,16 +26,32 @@ const Topbar: React.FC<TopbarProps> = ({ problemPage }) => {
 					<Image src='/CampFullLogo.png' alt='Logo' height={150} width={150} />
 				</Link>
 	
-			{problemPage && (
-			<div className='flex items-center gap-4 flex-1 justify-center'>
-				<div className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'></div>
-				<Link href='/' className='flex items-center gap-2 font-medium max-w-[170px] text-dark-gray-8 cursor-pointer'>
-				<div></div>
-				<p>Problem List</p>
-				</Link>
-				<div className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'></div>
-			</div>
-			)}
+				{problemPage && (
+					<div className='flex items-center gap-4 flex-1 justify-center'>
+						<div
+							className='flex items-center justify-center rounded bg-gray-700 hover:bg-gray-300 h-8 w-8 cursor-pointer'
+							//onClick={() => handleProblemChange(false)}
+						>
+							<FaChevronLeft />
+						</div>
+						<Link
+							href='/'
+							className='flex items-center gap-2 font-medium max-w-[170px]  text-dark-gray-10 cursor-pointer'
+						>
+							<div>
+								<BsList />
+							</div>
+							<p>Problem List</p>
+						</Link>
+						<div
+							className='flex items-center justify-center rounded bg-gray-700 hover:bg-gray-300 h-8 w-8 cursor-pointer'
+							//onClick={() => handleProblemChange(true)}
+						>
+							<FaChevronRight />
+						</div>
+					</div>
+				)}
+
 		
 			<div className='flex items-center space-x-4 flex-1 justify-end'>
 			
@@ -56,6 +74,7 @@ const Topbar: React.FC<TopbarProps> = ({ problemPage }) => {
 				</button>
 				</Link>
 			)}
+			{problemPage && <Timer />}
 			{user && (
 				<div className='cursor-pointer group relative'>
 				<Image src='/avatar.png' alt='Avatar' width={45} height={45} className='rounded-full' />

@@ -9,8 +9,8 @@ export type Problem = {
 
 export const problems: Problem[] = [
 	{
-		id: "1",
-		title: "1",
+		id: "two",
+		title: "two",
 		difficulty: "Easy",
 		category: "",
 		order: 1,
