@@ -20,7 +20,7 @@ type PlaygroundProps = {
 
 const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
 
-    const boilerPlate = "function twoSum(nums, target) { \n     // Write your code here \n}";
+    
 
     const [userCode,setUserCode] = useState<string>(starterCodeTwoSum)
     const [user] = useAuthState(auth);
@@ -89,7 +89,7 @@ const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
                 <Split className='h-[calc(100vh-94px)]' direction='vertical' sizes={[60, 40]} minSize={60}>
 				<div className='w-full overflow-auto'>
 					<CodeMirror
-						value={boilerPlate}
+						value={problem.starterCode}
 						theme={vscodeDark}
 						onChange={onChange}
 						extensions={[javascript()]}
@@ -105,31 +105,23 @@ const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
 						</div>
 					</div>
                     <div className='flex'>
-
-                        <div className='mr-2 items-start mt-2 text-white'>
-                            <div className='flex flex-wrap items-center gap-y-4'>
-                                <div className='font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3
-                                hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap'>
-                                Case 1  
-                                </div>
-                            </div>
-                        </div>
-                        <div className='mr-2 items-start mt-2 text-white'>
-                            <div className='flex flex-wrap items-center gap-y-4'>
-                                <div className='font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3
-                                hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap'>
-                                Case 2  
-                                </div>
-                            </div>
-                        </div>
-                        <div className='mr-2 items-start mt-2 text-white'>
-                            <div className='flex flex-wrap items-center gap-y-4'>
-                                <div className='font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3
-                                hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap'>
-                                Case 3
-                                </div>
-                            </div>
-                        </div>
+						{problem.examples.map((example, index) => (
+							<div
+								className='mr-2 items-start mt-2 '
+								key={example.id}
+								//onClick={() => setActiveTestCaseId(index)}
+							>
+								<div className='flex flex-wrap items-center gap-y-4'>
+									<div
+										className={`font-medium items-center transition-all focus:outline-none inline-flex bg-dark-fill-3 hover:bg-dark-fill-2 relative rounded-lg px-4 py-1 cursor-pointer whitespace-nowrap
+										
+									`}
+									>
+										Case {index + 1}
+									</div>
+								</div>
+							</div>
+						))}
 
 				    </div>
                     <div className='font-semibold my-4'>
