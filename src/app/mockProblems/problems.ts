@@ -8,29 +8,30 @@ export type Problem = {
 };
 
 export const problems: Problem[] = [
-	{
-		id: "two",
-		title: "two",
-		difficulty: "Easy",
+		//id is the name of the page when we click on it.
+	{	
+		id: "1",
+		title: "one",
+		difficulty: "Hard",
 		category: "",
 		order: 1,
 		videoId: "xvFZjo5PgG0",
 	},
 	{
 		id: "2",
-		title: "2",
-		difficulty: "Hard",
+		title: "two",
+		difficulty: "Medium",
 		category: "",
 		order: 2,
 		videoId: "xvFZjo5PgG0",
 	},
+
 	{
-		id: "3",
-		title: "3",
-		difficulty: "Medium",
+		id: "two-sum",
+		title: "two-sum",
+		difficulty: "Easy",
 		category: "",
-		order: 3,
+		order: 100,
 		videoId: "xvFZjo5PgG0",
 	},
-
 ];

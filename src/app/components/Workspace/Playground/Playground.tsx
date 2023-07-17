@@ -1,18 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PreferenceNav from './PreferenceNav/PreferenceNav';
 import CodeMirror from "@uiw/react-codemirror"
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
 import Split from 'react-split';
 import EditorFooter from './EditorFooter';
+import { Problem } from '@/utils/types/problem';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/app/firebase/firebase';
+import { toast } from 'react-toastify';
+import { problems } from '@/app/mockProblems/problems';
+
+import { handlerTwoSum, starterCodeTwoSum} from "@/utils/problems/two-sum";
 
 type PlaygroundProps = {
-    
+    problem: Problem
+    setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Playground:React.FC<PlaygroundProps> = () => {
+const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
 
     const boilerPlate = "function twoSum(nums, target) { \n     // Write your code here \n}";
+
+    const [userCode,setUserCode] = useState<string>(starterCodeTwoSum)
+    const [user] = useAuthState(auth);
+
+    const handleSubmit = async () => {
+		if (!user) {
+			toast.error("Please login to submit your code", {
+				position: "top-center",
+				autoClose: 3000,
+				theme: "dark",
+			});
+			return;
+		}
+		try {
+            const exercise = 'two-sum'; // Change this value based on the exercise you want to test
+
+
+
+
+			const cb = new Function(`return ${userCode}`)();
+			const success = handlerTwoSum(cb);
+
+			
+			
+			if (success) {
+				toast.success("Congrats! All tests passed!", {
+					position: "top-center",
+					autoClose: 3000,
+					theme: "dark",
+				});
+				setSuccess(true);
+				setTimeout(() => {
+					setSuccess(false);
+				}, 4000);
+			}
+			
+		} catch (error: any) {
+			console.log(error.message);
+			if (
+				error.message.startsWith("AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:")
+			) {
+				toast.error("Oops! One or more test cases failed", {
+					position: "top-center",
+					autoClose: 3000,
+					theme: "dark",
+				});
+			} else {
+				toast.error(error.message, {
+					position: "top-center",
+					autoClose: 3000,
+					theme: "dark",
+				});
+			}
+		}
+	};
+
+
+    const onChange = (value: string) => {
+        setUserCode(value);
+    };
 
     return (
         <>  
@@ -23,7 +91,7 @@ const Playground:React.FC<PlaygroundProps> = () => {
 					<CodeMirror
 						value={boilerPlate}
 						theme={vscodeDark}
-						
+						onChange={onChange}
 						extensions={[javascript()]}
 						style={{ fontSize: 16 }}
 					/>
@@ -76,7 +144,7 @@ const Playground:React.FC<PlaygroundProps> = () => {
 					</div>
                 </div>
                 </Split>
-                <EditorFooter />
+                <EditorFooter handleSubmit={handleSubmit} />
             </div>
         </>
     )
