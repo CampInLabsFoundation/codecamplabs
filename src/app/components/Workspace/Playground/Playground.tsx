@@ -11,7 +11,7 @@ import { auth } from '@/app/firebase/firebase';
 import { toast } from 'react-toastify';
 import { problems } from '@/app/mockProblems/problems';
 
-import { handlerTwoSum, starterCodeTwoSum} from "@/utils/problems/two-sum";
+
 
 type PlaygroundProps = {
     problem: Problem
@@ -22,8 +22,9 @@ const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
 
     const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
 
-    const [userCode,setUserCode] = useState<string>(starterCodeTwoSum)
+    const [userCode,setUserCode] = useState<string>(problem.starterCode)
     const [user] = useAuthState(auth);
+
 
     const handleSubmit = async () => {
 		if (!user) {
@@ -35,13 +36,11 @@ const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
 			return;
 		}
 		try {
-            const exercise = 'two-sum'; // Change this value based on the exercise you want to test
-
-
+       
 
 
 			const cb = new Function(`return ${userCode}`)();
-			const success = handlerTwoSum(cb);
+			const success = problem.handlerFunction(cb);
 
 			
 			

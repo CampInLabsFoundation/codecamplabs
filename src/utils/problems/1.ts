@@ -1,83 +1,72 @@
 import assert from "assert";
 import { Problem } from "../types/problem";
 
-export const starterCode1 = `function printloveyou(nums,target){
-  // Write your code here Love
-};`;
+export const starterCodeHelloWorld = `function printHelloWorld() {
+	// Exercise: Print "Hello, World!"
+	// Write code that prints the string "Hello, World!" to the console.
+	// Write your code under here
+	console.log("Hello, World!")
+  }
+
+  
+`;
+
 
 // checks if the user has the correct code
-export const handlerTwoSum = (fn: any) => {
-	// fn is the callback that user's code is passed into
+export const handlerHelloWorld = (fn: any) => {
 	try {
-		const nums = [
-			[2, 7, 11, 15],
-			[3, 2, 4],
-			[3, 3],
-		];
-
-		const targets = [9, 6, 6];
-		const answers = [
-			[0, 1], 
-			[1, 2],
-			[0, 1],
-		];
-
-		// loop all tests to check if the user's code is correct
-		for (let i = 0; i < nums.length; i++) {
-			// result is the output of the user's function and answer is the expected output
-			const result = fn(nums[i], targets[i]);
-			assert.deepStrictEqual(result, answers[i]);
-		}
+	  // Capture the console.log output
+	  let output = "";
+	  const storeLog = (inputs: string) => (output += inputs + "\n");
+	  console["log"] = storeLog;
+  
+	  // Call the user's code
+	  fn();
+  
+	  // Check if the output matches the expected string
+	  const expectedOutput = "Hello, World!";
+	  if (output.trim() === expectedOutput) {
 		return true;
+	  } else {
+		throw new Error("Output does not match expected value.");
+	  }
 	} catch (error: any) {
-		console.log("twoSum handler function error");
-		throw new Error(error);
+	  console.log("HelloWorld handler function error");
+	  throw new Error(error);
 	}
-};
+  };
+  
 
 export const One: Problem = {
-	id: "one",
-	title: "1. One",
-	problemStatement: `<p class='mt-3'>
- love LOVE bobo <code>target</code>, return
-  <em>indices of the two numbers such that they add up to</em> <code>target</code>.
-</p>
-<p class='mt-3'>
-  You may assume that each input would have <strong>exactly one solution</strong>, and you
-  may not use thesame element twice.
-</p>
-<p class='mt-3'>You can return the answer in any order.</p>`,
+	id: "hello-world",
+	title: "Hello, World!",
+	problemStatement: `<p><p><br/>
+	Exercise: Print "Hello, World!"
+	<br/><p>
+  </p>
+  <p>
+  Write a program that displays the message "Hello, World!" in the console.
+  </p>
+  <p>
+  To print a string in JavaScript, you can use the <code>console.log()</code> function. Inside the parentheses, place the string you want to print, which in this case is "Hello, World!".
+  </p>
+  <p>
+  Your task is to complete the code provided by filling in the missing line(s) to achieve the desired output.
+  </p>
+	
+	`,
 	examples: [
-		{
-			id: 1,
-			inputText: "nums = [2,7,11,15], target = 9",
-			outputText: "[0,1]",
-			explanation: "Because nums[0] + nums[1] == 9, we return [0, 1].",
-		},
-		{
-			id: 2,
-			inputText: "nums = [3,2,4], target = 6",
-			outputText: "[1,2]",
-			explanation: "Because nums[1] + nums[2] == 6, we return [1, 2].",
-		},
-		{
-			id: 3,
-			inputText: " nums = [3,3], target = 6",
-			outputText: "[0,1]",
-		},
+	  {
+		id: 1,
+		inputText: "",
+		outputText: "Hello, World!",
+		explanation: "",
+	  },
 	],
-	constraints: `<li class='mt-2'>
-  <code>2 ≤ nums.length ≤ 12345</code>
-</li> <li class='mt-2'>
-<code>-10 ≤ nums[i] ≤ 10</code>
-</li> <li class='mt-2'>
-<code>-10 ≤ target ≤ 10</code>
-</li>
-<li class='mt-2 text-sm'>
-<strong>Only one valid answer exists.</strong>
-</li>`,
-	handlerFunction: handlerTwoSum,
-	starterCode: starterCode1,
+	constraints: ``,
+
+	handlerFunction: handlerHelloWorld,
+	starterCode: starterCodeHelloWorld,
 	order: 1,
-	starterFunctionName: "function twoSum(",
+	starterFunctionName: "",
 };
