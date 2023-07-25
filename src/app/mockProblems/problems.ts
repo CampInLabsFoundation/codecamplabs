@@ -51,7 +51,7 @@ export const problems: Problem[] = [
 	},
 	{
 		id: "6",
-		title: "6",
+		title: "Check if a Number is Positive, Negative, or Zero",
 		difficulty: "Easy",
 		category: "",
 		order: 6,
