@@ -59,7 +59,7 @@ export const problems: Problem[] = [
 	},
 	{
 		id: "7",
-		title: "7",
+		title: "LeapYear",
 		difficulty: "Easy",
 		category: "",
 		order: 7,
