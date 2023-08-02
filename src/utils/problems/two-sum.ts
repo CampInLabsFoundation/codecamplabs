@@ -78,6 +78,6 @@ export const twoSum: Problem = {
 </li>`,
 	handlerFunction: handlerTwoSum,
 	starterCode: starterCodeTwoSum,
-	order: 1,
+	order: 69,
 	starterFunctionName: "function twoSum(",
 };
