@@ -40,7 +40,7 @@ const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
 
 
 			const cb = new Function(`return ${userCode}`)();
-			const success = problem.handlerFunction(cb);
+			const success = (problem.handlerFunction as (fn: any) => boolean)(cb);
 
 			
 			
