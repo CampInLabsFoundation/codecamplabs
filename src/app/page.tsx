@@ -69,7 +69,9 @@ export default function Home() {
 									</th>
 								</tr>
 							</thead>
-              <ProblemsTable />
+              <ProblemsTable setLoadingProblems={function (value: React.SetStateAction<boolean>): void {
+				  throw new Error('Function not implemented.')
+			  } } />
           </table>
 					
 
