@@ -209,20 +209,5 @@ export const problems: Problem[] = [
 		order: 25,
 		videoId: "xvFZjo5PgG0",
 	},
-	{
-		id: "14",
-		title: "",
-		difficulty: "Hard",
-		category: "",
-		order: 14,
-		videoId: "xvFZjo5PgG0",
-	},
-	{
-		id: "two-sum",
-		title: "two-sum",
-		difficulty: "Hard",
-		category: "",
-		order: 100,
-		videoId: "xvFZjo5PgG0",
-	},
+
 ];

@@ -30,6 +30,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
 							>
 								Easy
 							</div>
+							{/*
 							<div className='rounded p-[3px] ml-4 text-lg transition-colors duration-200 text-green-s text-dark-green-s'>
 								<BsCheck2Circle />
 							</div>
@@ -44,6 +45,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
 							<div className='cursor-pointer hover:bg-dark-fill-3  rounded p-[3px]  ml-4 text-xl transition-colors duration-200 text-green-s text-dark-gray-6 '>
 								<TiStarOutline />
 							</div>
+							*/} 
 						</div>
 
 						{/* Problem Statement(paragraphs) */}
