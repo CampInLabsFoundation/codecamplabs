@@ -16,6 +16,7 @@ import { problems } from '@/app/mockProblems/problems';
 type PlaygroundProps = {
     problem: Problem
     setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+	setSolved: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Playground:React.FC<PlaygroundProps> = ({ problem, setSuccess }) => {
