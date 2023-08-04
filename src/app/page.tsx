@@ -1,4 +1,5 @@
-'use client'
+/* eslint-disable react/no-unescaped-entities */
+'use client' 
 import Image from 'next/image'
 import Topbar from './components/Topbar/topbar'
 import ProblemsTable from './components/ProblemsTable/ProblemsTable'
