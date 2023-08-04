@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import Topbar from "../../components/Topbar/topbar";
 import Workspace from "../../components/Workspace/Workspace";
 import { Problem } from "@/utils/types/problem";
-import { Four } from "@/utils/problems/4";
+import { evenOrOdd } from "@/utils/problems/4";
+
 
 
 type ProblemPageProps = {
@@ -15,7 +16,7 @@ const useProblemData = () => {
   
 	useEffect(() => {
 	  // Fetch the problem data here
-	  const fetchedProblem = Four; // Replace with your data fetching logic
+	  const fetchedProblem = evenOrOdd; // Replace with your data fetching logic
   
 	  setProblem(fetchedProblem);
 	}, []);
