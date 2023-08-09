@@ -30,8 +30,8 @@ const AuthPage: React.FC<AuthPageProps> = () => {
             <div className="h-screen flex items-center justify-center pointer-events-none select-none">
               <div className="w-full h-full">
                 <div
-                  className="bg-cover bg-center w-full h-full"
-                  style={{ backgroundImage: "url('/authBg.png')" }}
+                  className="bg-cover bg-sky-600 bg-center w-full h-full"
+                  style={{ backgroundImage: "url('/codecamplabsbg.jpg')" }}
                 ></div>
               </div>
             </div>
